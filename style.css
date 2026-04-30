@@ -194,6 +194,7 @@ section {
     height: 2px;
     background: #cfb28b;
     transition: all 0.3s;
+    margin-right: 20px;
 }
 
 .mobile-only { display: none; }
@@ -205,7 +206,7 @@ section {
     max-height: 900px;
     display: flex;
     align-items: center;
-    background: url('https://images.unsplash.com/photo-1582719471137-c3967ffb1c42?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+    background: url(img/fon.jpg) center/cover no-repeat;
     position: relative;
     margin-top: 0;
 }
@@ -220,14 +221,18 @@ section {
     position: relative;
     z-index: 2;
     max-width: 800px;
+    width: 100%;
 }
 
 .hero__title {
-    font-size: clamp(2.8rem, 7vw, 5rem);
-    line-height: 1.15;
+    font-size: clamp(2.3rem, 5vw, 5rem);
+    line-height: 1.5;
     color: #ffffff;
     margin-bottom: 1.5rem;
     text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    white-space: normal;
+    word-break: keep-all;
+    max-width: 100%;
 }
 
 .hero__subtitle {
@@ -546,6 +551,7 @@ section {
 
 /* Мобильные */
 @media (max-width: 640px) {
+    .container { padding: 0 1rem; }
     .header__contacts { display: none; }
 
     .hero {
@@ -563,4 +569,190 @@ section {
     .gallery__grid { grid-template-columns: 1fr; }
 
     .calculator__box { padding: 2rem 1.5rem; }
+
+    .footer { padding: 1.5rem 0; }
+    .footer__menu { flex-wrap: wrap; gap: 1rem; }
+}
+
+/* ==================== НОВЫЕ БЛОКИ (НЕ ТРОГАЙ СТАРЫЙ КОД) ==================== */
+
+/* Для кого подходит */
+.for-whom__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.for-whom__card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid #222;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    transition: all 0.4s;
+}
+
+.for-whom__card:hover {
+    border-color: rgba(207, 178, 139, 0.4);
+    transform: translateY(-5px);
+}
+
+.for-whom__icon { font-size: 2.5rem; margin-bottom: 1rem; }
+
+/* Почему металл и лиственница */
+.why-materials__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.why-materials__text h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.why-materials__text ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1.5rem;
+}
+
+.why-materials__text li {
+    padding: 0.3rem 0;
+    color: #ccc;
+}
+
+.why-materials__image img {
+    width: 100%;
+    border-radius: 16px;
+}
+
+/* Виды мангальных зон */
+.types-zones__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.types-zones__item {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid #222;
+    padding: 1.8rem;
+    border-radius: 14px;
+    transition: border-color 0.3s;
+}
+
+.types-zones__item:hover { border-color: #cfb28b; }
+
+/* Расширенный процесс работы */
+.how-we-work__timeline {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.how-we-work__step {
+    padding: 1.5rem 0 1.5rem 3rem;
+    border-left: 2px solid #cfb28b;
+    position: relative;
+    margin-left: 1rem;
+}
+
+.how-we-work__number {
+    position: absolute;
+    left: -1.4rem;
+    top: 1.5rem;
+    background: #cfb28b;
+    color: #0b0b0b;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+/* Сравнение */
+.compare__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.compare__column {
+    padding: 2rem;
+    border-radius: 16px;
+}
+
+.compare__column--bad {
+    background: rgba(255, 100, 100, 0.05);
+    border: 1px solid rgba(255, 100, 100, 0.2);
+}
+
+.compare__column--good {
+    background: rgba(207, 178, 139, 0.05);
+    border: 1px solid #cfb28b;
+}
+
+.compare__column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.compare__column li {
+    padding: 0.4rem 0;
+}
+
+/* Расширенное FAQ */
+.faq-extended__list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-extended__question {
+    width: 100%;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid #222;
+    color: white;
+    padding: 1.2rem;
+    text-align: left;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    transition: 0.3s;
+    font-family: inherit;
+}
+
+.faq-extended__question:hover { border-color: #cfb28b; }
+
+.faq-extended__answer {
+    display: none;
+    padding: 0 1rem 1rem;
+    color: #ccc;
+}
+
+.faq-extended__answer.open { display: block; }
+
+/* Адаптив для новых блоков */
+@media (max-width: 768px) {
+    .for-whom__grid,
+    .types-zones__grid,
+    .compare__grid,
+    .why-materials__content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==================== ФИКС H1 ПО ШИРИНЕ ==================== */
+.hero__content {
+    max-width: 90%;  /* было 800px — теперь тянется почти на всю ширину */
+}
+
+.hero__title {
+    white-space: normal !important;
+    word-break: normal !important;
+    max-width: 100% !important;
+    width: 100% !important;
 }

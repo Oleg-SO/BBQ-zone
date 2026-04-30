@@ -2,14 +2,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const burgerBtn = document.getElementById('burgerBtn');
     const mainNav = document.getElementById('mainNav');
+    const menu = document.querySelector('.header__menu');
     const menuLinks = document.querySelectorAll('.header__link');
     const body = document.body;
 
     // Открытие/закрытие меню
     burgerBtn.addEventListener('click', function(e) {
         e.stopPropagation();
-        mainNav.classList.toggle('active');
-        if (mainNav.classList.contains('active')) {
+        menu.classList.toggle('active');
+        if (menu.classList.contains('active')) {
             body.style.overflow = 'hidden';
         } else {
             body.style.overflow = '';
@@ -19,15 +20,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Закрытие меню при клике на ссылку
     menuLinks.forEach(link => {
         link.addEventListener('click', () => {
-            mainNav.classList.remove('active');
+            menu.classList.remove('active');
             body.style.overflow = '';
         });
     });
 
     // Закрытие меню при клике вне его
     document.addEventListener('click', function(e) {
-        if (mainNav.classList.contains('active') && !mainNav.contains(e.target) && !burgerBtn.contains(e.target)) {
-            mainNav.classList.remove('active');
+        if (menu.classList.contains('active') && !menu.contains(e.target) && !burgerBtn.contains(e.target)) {
+            menu.classList.remove('active');
             body.style.overflow = '';
         }
     });
@@ -73,8 +74,11 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.faq__question').forEach(q => {
         q.addEventListener('click', () => {
             const answer = q.nextElementSibling;
+            const isOpen = answer.classList.contains('open');
             document.querySelectorAll('.faq__answer').forEach(a => a.classList.remove('open'));
-            answer.classList.toggle('open');
+            if (!isOpen) {
+                answer.classList.add('open');
+            }
         });
     });
 
@@ -104,4 +108,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+});
+
+// Расширенный FAQ аккордеон
+document.querySelectorAll('.faq-extended__question').forEach(q => {
+    q.addEventListener('click', () => {
+        const answer = q.nextElementSibling;
+        // Закрыть все ответы в этом блоке
+        document.querySelectorAll('.faq-extended__answer').forEach(a => a.classList.remove('open'));
+        // Открыть текущий
+        answer.classList.toggle('open');
+    });
 });
