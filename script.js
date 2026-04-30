@@ -83,15 +83,44 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Форма
-    document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+    document.getElementById('contactForm')?.addEventListener('submit', async function(e) {
         e.preventDefault();
-        const name = this.querySelector('input[name="name"]').value.trim();
-        const phone = this.querySelector('input[name="phone"]').value.trim();
-        if (name && phone) {
-            alert('Спасибо, ' + name + '! Заявка принята.');
-            this.reset();
-        } else {
+        const form = this;
+        const formData = new FormData(form);
+        const name = (formData.get('name') || '').toString().trim();
+        const phone = (formData.get('phone') || '').toString().trim();
+        if (!name || !phone) {
             alert('Заполните имя и телефон.');
+            return;
+        }
+
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalText = submitButton?.textContent;
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Отправка...';
+        }
+
+        try {
+            const response = await fetch(form.action || 'sendmail.php', {
+                method: 'POST',
+                body: formData,
+            });
+            const result = await response.json();
+            if (response.ok && result.success) {
+                alert(result.message || 'Спасибо, заявка отправлена.');
+                form.reset();
+            } else {
+                throw new Error(result.message || 'Ошибка отправки формы.');
+            }
+        } catch (error) {
+            console.error('Form submit error:', error);
+            alert('Не удалось отправить заявку. Попробуйте ещё раз.');
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+            }
         }
     });
 
