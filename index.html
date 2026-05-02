@@ -74,6 +74,17 @@
                     Написать в WhatsApp
                 </a>
             </div>
+            <div class="hero__animation" aria-hidden="true">
+                <div class="fire">
+                    <div class="smoke smoke--one"></div>
+                    <div class="smoke smoke--two"></div>
+                    <div class="smoke smoke--three"></div>
+                    <div class="flame flame--outer"></div>
+                    <div class="flame flame--middle"></div>
+                    <div class="flame flame--inner"></div>
+                    <div class="coals"></div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -130,7 +141,7 @@
     </section>
 
     <!-- КАЛЬКУЛЯТОР -->
-    <section class="calculator bg-wood-texture" id="calculator">
+    <section class="calculator bg-wood-texture section-bg section-bg--dark" id="calculator" style="--section-bg-image: none;">
         <div class="container">
             <h2 class="section-title">Калькулятор стоимости</h2>
             <div class="calculator__box">
@@ -148,16 +159,7 @@
             </div>
         </div>
     </section>
-     <!-- О НАС -->
-    <section class="about-us bg-wood-texture" id="about-us">
-        <div class="container">
-            <h2 class="section-title">О нашей компании</h2>
-            <div class="about-us__content">
-                <p>Создаём барбекю-зоны с 2018 года. <strong>Более 120 проектов</strong> в городе и области.</p>
-                <p>Работаем с частными клиентами, ресторанами и базами отдыха.</p>
-            </div>
-        </div>
-    </section>
+
     <!-- ГАЛЕРЕЯ -->
     <section class="gallery" id="gallery">
         <div class="container">
@@ -180,10 +182,30 @@
                     <div class="gallery__overlay"><span>🔍</span></div>
                 </div>
             </div>
+            <div class="gallery__details">
+                <div class="gallery__description">
+                    <p>Это готовые зоны барбекю, выполненные из чёрного металла и лиственницы. Каждая зона включает рабочую поверхность, место для мангала, удобные полки и стильный дизайн для комфортных встреч на улице.</p>
+                    <p>Мы делаем проекты, которые выдерживают дождь и мороз, легко вписываются в террасу или сад и создают атмосферу настоящего летнего очага.</p>
+                </div>
+                <button class="btn btn-primary" id="openCallbackBtn">Оставить заявку</button>
+            </div>
         </div>
         <div class="gallery-modal" id="galleryModal">
             <span class="gallery-modal__close" id="modalClose">&times;</span>
             <img class="gallery-modal__image" id="modalImage" src="" alt="Увеличенное фото">
+        </div>
+        <div class="callback-modal" id="callbackModal">
+            <div class="callback-modal__box">
+                <button class="callback-modal__close" id="callbackClose" aria-label="Закрыть форму">&times;</button>
+                <h3>Заказать обратный звонок</h3>
+                <p>Оставьте номер, и мы свяжемся, чтобы обсудить проект вашей зоны барбекю и подготовить расчёт.</p>
+                <form class="callback-form" id="callbackForm" method="post" action="sendmail.php">
+                    <input type="text" name="name" placeholder="Ваше имя" required>
+                    <input type="tel" name="phone" placeholder="Телефон" required>
+                    <input type="hidden" name="source" value="Обратный звонок из галереи">
+                    <button type="submit" class="btn btn-primary">Перезвоните мне</button>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -314,6 +336,16 @@
         </div>
     </section>
 
+    <!-- О НАС -->
+    <section class="about-us bg-wood-texture" id="about-us">
+        <div class="container">
+            <h2 class="section-title">О нашей компании</h2>
+            <div class="about-us__content">
+                <p>Создаём барбекю-зоны с 2018 года. <strong>Более 120 проектов</strong> в городе и области.</p>
+                <p>Работаем с частными клиентами, ресторанами и базами отдыха.</p>
+            </div>
+        </div>
+    </section>
 
     <!-- КОНТАКТЫ -->
     <section class="contact bg-wood-texture" id="contacts">

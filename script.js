@@ -46,7 +46,34 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.getElementById('openCalcForm')?.addEventListener('click', () => {
-        document.getElementById('contacts').scrollIntoView({ behavior: 'smooth' });
+        const callbackModal = document.getElementById('callbackModal');
+        if (callbackModal) {
+            callbackModal.classList.add('active');
+            body.style.overflow = 'hidden';
+        }
+    });
+
+    document.getElementById('openCallbackBtn')?.addEventListener('click', () => {
+        const callbackModal = document.getElementById('callbackModal');
+        if (callbackModal) {
+            callbackModal.classList.add('active');
+            body.style.overflow = 'hidden';
+        }
+    });
+
+    const callbackModal = document.getElementById('callbackModal');
+    const callbackClose = document.getElementById('callbackClose');
+
+    function closeCallbackModal() {
+        if (callbackModal) {
+            callbackModal.classList.remove('active');
+            body.style.overflow = '';
+        }
+    }
+
+    callbackClose?.addEventListener('click', closeCallbackModal);
+    callbackModal?.addEventListener('click', (e) => {
+        if (e.target === callbackModal) closeCallbackModal();
     });
 
     // Галерея
@@ -83,45 +110,48 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Форма
-    document.getElementById('contactForm')?.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const form = this;
-        const formData = new FormData(form);
-        const name = (formData.get('name') || '').toString().trim();
-        const phone = (formData.get('phone') || '').toString().trim();
-        if (!name || !phone) {
-            alert('Заполните имя и телефон.');
-            return;
-        }
-
-        const submitButton = form.querySelector('button[type="submit"]');
-        const originalText = submitButton?.textContent;
-        if (submitButton) {
-            submitButton.disabled = true;
-            submitButton.textContent = 'Отправка...';
-        }
-
-        try {
-            const response = await fetch(form.action || 'sendmail.php', {
-                method: 'POST',
-                body: formData,
-            });
-            const result = await response.json();
-            if (response.ok && result.success) {
-                alert(result.message || 'Спасибо, заявка отправлена.');
-                form.reset();
-            } else {
-                throw new Error(result.message || 'Ошибка отправки формы.');
+    document.querySelectorAll('#contactForm, #callbackForm').forEach(form => {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const currentForm = this;
+            const formData = new FormData(currentForm);
+            const name = (formData.get('name') || '').toString().trim();
+            const phone = (formData.get('phone') || '').toString().trim();
+            if (!name || !phone) {
+                alert('Заполните имя и телефон.');
+                return;
             }
-        } catch (error) {
-            console.error('Form submit error:', error);
-            alert('Не удалось отправить заявку. Попробуйте ещё раз.');
-        } finally {
+
+            const submitButton = currentForm.querySelector('button[type="submit"]');
+            const originalText = submitButton?.textContent;
             if (submitButton) {
-                submitButton.disabled = false;
-                submitButton.textContent = originalText;
+                submitButton.disabled = true;
+                submitButton.textContent = 'Отправка...';
             }
-        }
+
+            try {
+                const response = await fetch(currentForm.action || 'sendmail.php', {
+                    method: 'POST',
+                    body: formData,
+                });
+                const result = await response.json();
+                if (response.ok && result.success) {
+                    alert(result.message || 'Спасибо, заявка отправлена.');
+                    currentForm.reset();
+                    closeCallbackModal();
+                } else {
+                    throw new Error(result.message || 'Ошибка отправки формы.');
+                }
+            } catch (error) {
+                console.error('Form submit error:', error);
+                alert('Не удалось отправить заявку. Попробуйте ещё раз.');
+            } finally {
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                }
+            }
+        });
     });
 
     // Якорные ссылки
