@@ -45,12 +45,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    document.getElementById('openCalcForm')?.addEventListener('click', () => {
-        const callbackModal = document.getElementById('callbackModal');
-        if (callbackModal) {
-            callbackModal.classList.add('active');
-            body.style.overflow = 'hidden';
-        }
+    document.querySelectorAll('.js-open-calc-form').forEach(button => {
+        button.addEventListener('click', () => {
+            const callbackModal = document.getElementById('callbackModal');
+            if (callbackModal) {
+                callbackModal.classList.add('active');
+                body.style.overflow = 'hidden';
+            }
+        });
     });
 
     document.getElementById('openCallbackBtn')?.addEventListener('click', () => {
