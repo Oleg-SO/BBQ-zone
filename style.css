@@ -266,7 +266,7 @@ section {
 }
 
 .hero__picture {
-    min-height: 615px;
+    min-height: 470px;
     border-radius: 30px;
     background: url(img/bbq-zone.jpg) center/cover no-repeat;
     background-color: #111;
