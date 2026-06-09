@@ -221,6 +221,25 @@ section {
 
 .header__whatsapp-icon:hover { transform: scale(1.15); }
 
+.header__call {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.2rem;
+    border-radius: 999px;
+    border: 1px solid rgba(207, 178, 139, 0.3);
+    background: rgba(207, 178, 139, 0.08);
+    color: #cfb28b;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.header__call:hover {
+    background: rgba(207, 178, 139, 0.16);
+    transform: translateY(-1px);
+}
+
 /* Бургер */
 .header__burger {
     display: none;
@@ -252,26 +271,39 @@ section {
     position: relative;
     margin-top: 0;
     padding: 4rem 0;
+    overflow: hidden;
 }
 
 .hero__content {
     display: grid;
-    grid-template-columns: 1.05fr 1fr;
-    align-items: center;
+    grid-template-columns: minmax(0, 2fr) 1fr;
+    align-items: stretch;
     gap: 2.5rem;
     position: relative;
     z-index: 1;
     width: 100%;
     max-width: 1280px;
+    margin-top: 20px;
 }
 
 .hero__picture {
-    min-height: 470px;
-    border-radius: 30px;
-    background: url(img/bbq-zone.jpg) center/cover no-repeat;
-    background-color: #111;
-    box-shadow: 0 40px 120px rgba(0, 0, 0, 0.45);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    min-height: calc(80vh - 8rem);
+    height: 100%;
+    border-radius: 0;
+    background: url(img/bbq-zone.jpg) left center/cover no-repeat;
+    background-color: #0b0b0b;
+    box-shadow: none;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero__picture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 20%, rgba(11, 11, 11, 0.87) 90%, rgba(11, 11, 11, 1) 99%);
+    pointer-events: none;
 }
 
 .hero__text {
@@ -281,7 +313,7 @@ section {
 }
 
 .hero__title {
-    font-size: clamp(2.3rem, 5vw, 4.8rem);
+    font-size: clamp(2.3rem, 5vw, 1.8rem);
     line-height: 1.15;
     color: #ffffff;
     margin-bottom: 0;
@@ -748,7 +780,8 @@ section {
     .hero__picture {
         min-height: 300px;
         background-size: 395px;
-        margin-top: 35px;
+        margin-top: -37px;
+        border-radius: 0px;
     }
 
     .hero__title {
@@ -773,6 +806,10 @@ section {
         max-height: none;
         padding: 7rem 0 4rem;
         background-position: 65% center;
+    }
+
+    .hero__picture::before {
+        background: linear-gradient(181deg, transparent 20%, rgba(11, 11, 11, 0.87) 90%, rgba(11, 11, 11, 1) 99%);
     }
 
     .hero__content {
@@ -970,5 +1007,4 @@ section {
         margin-left: 0;
         width: 100%;
     }
-}
 }
