@@ -132,18 +132,20 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             try {
-                const response = await fetch(currentForm.action || 'sendmail.php', {
+                const response = await fetch(currentForm.action || 'send.php', {
                     method: 'POST',
                     body: formData,
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
                 });
                 const result = await response.json();
                 if (response.ok && result.success) {
-                    alert(result.message || 'Спасибо, заявка отправлена.');
-                    currentForm.reset();
-                    closeCallbackModal();
-                } else {
-                    throw new Error(result.message || 'Ошибка отправки формы.');
+                    window.location.href = 'thanks.html';
+                    return;
                 }
+                throw new Error(result.message || 'Ошибка отправки формы.');
             } catch (error) {
                 console.error('Form submit error:', error);
                 alert('Не удалось отправить заявку. Попробуйте ещё раз.');

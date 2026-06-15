@@ -64,10 +64,10 @@
             <div class="hero__picture" aria-hidden="true"></div>
             <div class="hero__text">
                 <h1 class="hero__title">
-                    Зона барбекю (BBQ) под ключ — <span class="gold-accent">изготовление и установка</span>
+                    Премиальная зона барбекю под ключ — <span class="gold-accent">изготовление, установка и монтаж</span>
                 </h1>
                 <p class="hero__subtitle">
-                    Материал (чёрная порошковая краска) и лиственница
+                    Современный BBQ-комплекс из чёрного металла с долговечной порошковой краской и натуральной лиственницы для террасы, сада и беседки.
                 </p>
                 <div class="hero__buttons">
                     <button type="button" class="btn btn-primary js-open-calc-form">Рассчитать стоимость</button>
@@ -214,9 +214,10 @@
                 <button class="callback-modal__close" id="callbackClose" aria-label="Закрыть форму">&times;</button>
                 <h3>Заказать обратный звонок</h3>
                 <p>Оставьте номер, и мы свяжемся, чтобы обсудить проект вашей зоны барбекю и подготовить расчёт.</p>
-                <form class="callback-form" id="callbackForm" method="post" action="sendmail.php">
+                <form class="callback-form" id="callbackForm" method="post" action="send.php">
                     <input type="text" name="name" placeholder="Ваше имя" required>
                     <input type="tel" name="phone" placeholder="Телефон" required>
+                    <input type="hidden" name="message" value="Обратный звонок из галереи">
                     <input type="hidden" name="source" value="Обратный звонок из галереи">
                     <button type="submit" class="btn btn-primary">Перезвоните мне</button>
                 </form>
@@ -403,10 +404,10 @@
         <div class="container">
             <h2 class="section-title">Оставить заявку</h2>
             <div class="contact__grid">
-                <form class="contact__form" id="contactForm" method="post" action="sendmail.php">
+                <form class="contact__form" id="contactForm" method="post" action="send.php">
                     <input type="text" name="name" placeholder="Ваше имя" required>
                     <input type="tel" name="phone" placeholder="Телефон" required>
-                    <textarea name="comment" placeholder="Комментарий (размеры, пожелания)" rows="4"></textarea>
+                    <textarea name="message" placeholder="Комментарий (размеры, пожелания)" rows="4"></textarea>
                     <button type="submit" class="btn btn-primary">Отправить заявку</button>
                     <p class="contact__privacy">Нажимая кнопку, вы соглашаетесь с обработкой данных</p>
                 </form>
