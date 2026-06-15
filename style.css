@@ -271,9 +271,9 @@ section {
     min-height: 80vh;
     display: flex;
     align-items: center;
-    background: radial-gradient(circle at top left, rgba(207, 178, 139, 0.18), transparent 24%),
-                radial-gradient(circle at bottom right, rgba(207, 178, 139, 0.08), transparent 26%),
-                linear-gradient(180deg, #16202a 0%, #10131a 100%);
+    background: radial-gradient(circle at top left, rgba(207, 178, 139, 0.18), 
+    transparent 24%), radial-gradient(circle at bottom right, rgba(207, 178, 139, 0.08), 
+    transparent 26%), linear-gradient(90deg, #000000 0%, #0e111a);
     position: relative;
     margin-top: 0;
     padding: 4rem 0;
