@@ -531,6 +531,8 @@ section {
     border: 1px solid rgba(207, 178, 139, 0.14);
     box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    padding: 0.75rem;
+    box-sizing: border-box;
 }
 
 .gallery__item:hover {
@@ -540,11 +542,11 @@ section {
 }
 
 .gallery__item img {
-    width: 80%;
+    width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.6s;
-    margin-left: 50px;
+    border-radius: 14px;
 }
 
 .gallery__item:hover img { transform: scale(1.05); }
